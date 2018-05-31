@@ -17,4 +17,11 @@ describe('SliceArray', () => {
     const output = input[[,,2]];
     assert.deepStrictEqual(output, expectedOutut);
   });
+
+  it('should extract the odd elements from an array', () => {
+    const input = new SliceArray(0, 1, 2, 3, 4);
+    const expectedOutut = [1, 3];
+    const output = input[[1,,2]];
+    assert.deepStrictEqual(output, expectedOutut);
+  });
 });
