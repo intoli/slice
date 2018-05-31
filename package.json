@@ -8,6 +8,7 @@
   "license": "BSD-2-Clause",
   "private": false,
   "scripts": {
+    "build": "NODE_ENV=production webpack",
     "test": "NODE_ENV=testing mocha --exit --require babel-register"
   },
   "devDependencies": {
