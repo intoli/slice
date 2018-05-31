@@ -7,6 +7,9 @@
   "author": "Intoli, LLC <contact@intoli.com>",
   "license": "BSD-2-Clause",
   "private": false,
+  "scripts": {
+    "test": "NODE_ENV=testing mocha --exit --require babel-register"
+  },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
