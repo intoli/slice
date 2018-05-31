@@ -2,6 +2,7 @@ class Slice {
   constructor(start, stop, step) {
     // Support the `Slice(stop)` signature.
     if (stop === undefined && step === undefined) {
+      // eslint-disable-next-line no-param-reassign
       [start, stop] = [stop, start];
     }
 
@@ -28,11 +29,11 @@ class Slice {
     if (step > 0) {
       currentIndex = start == null ? 0 : start;
       const maximumPossibleIndex = stop == null ? array.length - 1 : stop - 1;
-      indexIsValid = (index) => index <= maximumPossibleIndex;
+      indexIsValid = index => (index <= maximumPossibleIndex);
     } else {
       currentIndex = start == null ? array.length - 1 : Math.min(start, array.length - 1);
       const minimumPossibleIndex = stop == null ? 0 : stop + 1;
-      indexIsValid = (index) => index >= minimumPossibleIndex;
+      indexIsValid = index => (index >= minimumPossibleIndex);
     }
 
     // Loop through and add indices until we've completed the loop.
@@ -53,7 +54,6 @@ class Slice {
       const start = this.start == null ? undefined : this.start;
       const stop = this.stop == null ? undefined : this.stop;
       return array.slice(start, stop);
-
     }
 
     return this.indices(array)
@@ -73,16 +73,20 @@ class Slice {
     // Otherwise, the lengths must match and we need to do them one-by-one.
     const indices = this.indices(array);
     if (indices.length !== values.length) {
-      throw new Error(
+      throw new Error((
         `attempt to assign sequence of size ${values.length} ` +
         `to extended slice of size ${indices.length}`
-      );
+      ));
     }
+
     this.indices(array)
-      .forEach((arrayIndex, valuesIndex) => array[arrayIndex] = values[valuesIndex]);
+      .forEach((arrayIndex, valuesIndex) => {
+        // eslint-disable-next-line no-param-reassign
+        array[arrayIndex] = values[valuesIndex];
+      });
     return array;
   }
-};
+}
 
 
 export default Slice;

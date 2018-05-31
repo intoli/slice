@@ -8,8 +8,10 @@ class SliceArray extends Array {
     // Helper method that constructs either a `get` or `set` trap.
     const constructTrap = action => (target, name, value) => {
       const key = (name || '').toString()
-        .replace(/\s/g, '')  // Remove all whitespace.
-        .replace(/,/g, ':');  // Replace commas with colons.
+        // Remove all whitespace.
+        .replace(/\s/g, '')
+        // Replace commas with colons.
+        .replace(/,/g, ':');
 
       // Handle negative indices.
       if (/^-\d+$/.test(key)) {
@@ -18,7 +20,9 @@ class SliceArray extends Array {
 
       // Handle slices.
       if (/^(-?\d+)?(:(-?\d+)?(:(-?\d+)?)?)$/.test(key)) {
-        const [start, stop, step] = key.split(':').map(part => part.length ? part : undefined);
+        const [start, stop, step] = key.split(':').map(part => (
+          part.length ? part : undefined
+        ));
         const slice = new Slice(start, stop, step);
         return slice[action](target, value);
       }
