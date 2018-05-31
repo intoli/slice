@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
     "build": "NODE_ENV=production webpack",
+    "lint": "eslint src/",
     "test": "NODE_ENV=testing mocha --exit --require babel-register"
   },
   "devDependencies": {
