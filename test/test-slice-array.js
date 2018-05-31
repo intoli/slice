@@ -10,4 +10,11 @@ describe('SliceArray', () => {
     const output = input[[,,-1]];
     assert.deepStrictEqual(output, expectedOutut);
   });
+
+  it('should extract the even elements from an array', () => {
+    const input = new SliceArray(0, 1, 2, 3, 4);
+    const expectedOutut = [0, 2, 4];
+    const output = input[[,,2]];
+    assert.deepStrictEqual(output, expectedOutut);
+  });
 });
