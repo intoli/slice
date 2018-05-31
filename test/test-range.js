@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import range from '../src/range'
+import { range } from '../src/';
 
 
 describe('range', () => {
