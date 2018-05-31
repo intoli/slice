@@ -1,0 +1,10 @@
+{
+  "name": "slice",
+  "version": "0.0.1",
+  "description": "A JavaScript implementation of Python's extended slice syntax.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/intoli/slice",
+  "author": "Intoli, LLC <contact@intoli.com>",
+  "license": "BSD-2-Clause",
+  "private": false
+}
