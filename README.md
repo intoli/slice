@@ -54,3 +54,42 @@ outputs[[3 * 5 - 1,,3 * 5]] =
 // Tada!
 console.log(outputs);
 ```
+
+
+## Development
+
+To get started on development, you simply need to clone the repository and install the project dependencies.
+
+```bash
+# Clone the repository.
+git clone https://github.com/intoli/slice.git
+cd slice
+
+# Install the dependencies.
+yarn install
+
+# Build the project.
+yarn build
+
+# Run the tests.
+yarn test
+```
+
+There is also a separate test suite which generates many thousands of slice operations on the fly in Python.
+These generated operations are then applied in JavaScript to confirm that everything works as expected.
+The auto-generated tests can be run with the `yarn test:generated` command.
+
+
+## Contributing
+
+Contributions are welcome, but please follow these contributor guidelines:
+
+- Create an issue on [the issue tracker](https://github.com/intoli/slice/issues/new) to discuss potential changes before submitting a pull request.
+- Include at least one test to cover any new functionality or bug fixes.
+- Make sure that all of your tests are passing and that there are no merge conflicts.
+- You agree to assign the copyright for any contributions to Intoli, LLC.
+
+
+## License
+
+Slice is licensed under a [BSD 2-Clause License](LICENSE) and is copyright [Intoli, LLC](https://intoli.com).
