@@ -4,6 +4,11 @@ import SliceArray from '../src/';
 
 
 describe('SliceArray', () => {
+  it('should return true for Array.isArray()', () => {
+    const sliceArray = new SliceArray();
+    assert(Array.isArray(sliceArray));
+  });
+
   it('should reverse an array', () => {
     const input = new SliceArray(1, 2, 3, 4);
     const expectedOutput = [4, 3, 2, 1];
