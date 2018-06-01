@@ -33,7 +33,8 @@ export const constructTrap = action => (target, name, value) => {
   }
 
   // Fall back to the array's own properties.
-  return Reflect[action](target, name, value);
+  const result = Reflect[action](target, name, value);
+  return typeof result === 'function' ? result.bind(target) : result;
 };
 
 export const sliceProxyHandler = {
