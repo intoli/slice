@@ -36,19 +36,6 @@ class SliceArray extends Array {
       set: constructTrap('set'),
     });
   }
-
-  static from = (...args) => {
-    const array = Array.from(...args);
-    if (array.length > 1) {
-      return new SliceArray(...array);
-    } else if (array.length === 1) {
-      const sliceArray = new SliceArray(1);
-      // eslint-disable-next-line prefer-destructuring
-      sliceArray[0] = array[0];
-      return sliceArray;
-    }
-    return new SliceArray(0);
-  };
 }
 
 
