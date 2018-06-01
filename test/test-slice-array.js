@@ -24,4 +24,11 @@ describe('SliceArray', () => {
     const output = input[[1,,2]];
     assert.deepStrictEqual(output, expectedOutput);
   });
+
+  it('should construct a single-member array with an element of zero', () => {
+    const array = [0];
+    const sliceArray = new SliceArray(...array);
+    assert(sliceArray.length === 1);
+    assert(sliceArray[0] === 0);
+  });
 });
