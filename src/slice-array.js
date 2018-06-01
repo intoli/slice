@@ -43,6 +43,7 @@ class SliceArray extends Array {
       return new SliceArray(...array);
     } else if (array.length === 1) {
       const sliceArray = new SliceArray(1);
+      // eslint-disable-next-line prefer-destructuring
       sliceArray[0] = array[0];
       return sliceArray;
     }
