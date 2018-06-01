@@ -6,4 +6,5 @@ export {
   SliceArray as default,
   range,
   Slice,
+  SliceArray,
 };
