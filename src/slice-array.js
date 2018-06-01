@@ -38,5 +38,12 @@ class SliceArray extends Array {
   }
 }
 
+// A little bit of a hack to allow both `new SliceArray()` and `SliceArray()`.
+function constructSliceArray(...args) {
+  return new SliceArray(...args);
+}
+constructSliceArray.__proto__ = SliceArray.__proto__;
+constructSliceArray.prototype = SliceArray.prototype;
 
-export default SliceArray;
+
+export default constructSliceArray;
