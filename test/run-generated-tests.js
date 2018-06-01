@@ -38,6 +38,10 @@ const runAllTests = () => (
       const initialSliceArray = SliceArray.from(initial);
       const extractedUsingString = initialSliceArray[slice];
       assert.deepEqual(extractedUsingString, extracted);
+      const extractedUsingDoubleBrackets = eval(
+        `initialSliceArray[[${slice.replace(/:/g, ',')}]]`
+      );
+      assert.deepEqual(extractedUsingDoubleBrackets, extracted);
       // If we made it this far, there should have been no Python error.
       assert(error == null);
     } catch (e) {
