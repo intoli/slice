@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 import path from 'path';
 import readline from 'readline';
 
-import SliceArray from '../src/';
+import { SliceArray } from '../src/';
 
 
 const generateTests = (runTest) => (
