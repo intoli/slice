@@ -1,9 +1,20 @@
-const range = (start, end) => (
-  end == null ? range(0, start) :
-    Array(end - start)
+const range = (start, stop, step = 1) => {
+  if (stop == null) {
+    return range(0, start);
+  } else if (step === 1) {
+    return Array(stop - start)
       .fill()
-      .map((_, index) => index + start)
-);
+      .map((_, index) => index + start);
+  }
+  const isValid = value => (step > 0 ? value < stop : value > stop);
+  const values = [];
+  let currentValue = start;
+  while (isValid(currentValue)) {
+    values.push(currentValue);
+    currentValue += step;
+  }
+  return values;
+};
 
 
 export default range;
