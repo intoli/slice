@@ -50,7 +50,7 @@ class Slice {
 
   get = (array) => {
     // We can use the built in `Array.slice()` method for this special case.
-    if (this.step == null || this.step === 1) {
+    if (array.slice && (this.step == null || this.step === 1)) {
       const start = this.start == null ? undefined : this.start;
       const stop = this.stop == null ? undefined : this.stop;
       return array.slice(start, stop);
@@ -62,7 +62,7 @@ class Slice {
 
   set = (array, values) => {
     // We can insert arrays of any length for unextended slices.
-    if (this.step == null || this.step === 1) {
+    if (array.splice && (this.step == null || this.step === 1)) {
       const start = this.start < 0 ? Math.max(this.start + array.length, 0) : this.start;
       const stop = this.stop < 0 ? this.stop + array.length : this.stop;
       const deleteCount = this.stop == null ? array.length : stop - start;
