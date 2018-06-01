@@ -35,7 +35,7 @@ const runAllTests = () => (
   }) => {
     console.log(`Running test #${index}`);
     try {
-      const initialSliceArray = new SliceArray(...initial);
+      const initialSliceArray = SliceArray.from(initial);
       const extractedUsingString = initialSliceArray[slice];
       assert.deepEqual(extractedUsingString, extracted);
       // If we made it this far, there should have been no Python error.
