@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { SliceArray } from '../src/';
+import { SliceArray, SliceString } from '../src/';
 
 
 describe('SliceArray', () => {
@@ -61,5 +61,19 @@ describe('SliceArray', () => {
     const expectedOutput = [1, 3];
     const output = input[[1,,2]];
     assert.deepEqual(output, expectedOutput);
+  });
+
+  it('should support slice assignment from a String', () => {
+    const array = new SliceArray(1, 2, 3, 4);
+    const expectedOutput = [1, 'b', 3, 'a'];
+    array[[,,-2]] = 'ab';
+    assert.deepEqual(array, expectedOutput);
+  });
+
+  it('should support slice assignment from a SliceString', () => {
+    const array = new SliceArray(1, 2, 3, 4);
+    const expectedOutput = [1, 'b', 3, 'a'];
+    array[[,,-2]] = new SliceString('ab');
+    assert.deepEqual(array, expectedOutput);
   });
 });
