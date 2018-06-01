@@ -9,6 +9,22 @@ describe('SliceArray', () => {
     assert(Array.isArray(sliceArray));
   });
 
+  it('should be identifiable using instanceof', () => {
+    const sliceArray = new SliceArray();
+    assert(sliceArray instanceof SliceArray);
+  });
+
+  it('should support initialization without the new keyword', () => {
+    const sliceArray = SliceArray(1, 2, 3);
+    assert(sliceArray.length === 3);
+    assert(sliceArray[-1] === 3);
+  });
+
+  it('should support initialization with SliceArray.from()', () => {
+    const sliceArray = SliceArray.from([1, 2]);
+    assert(sliceArray.length === 2);
+  });
+
   it('should reverse an array', () => {
     const input = new SliceArray(1, 2, 3, 4);
     const expectedOutput = [4, 3, 2, 1];
