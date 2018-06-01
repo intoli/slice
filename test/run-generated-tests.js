@@ -42,6 +42,9 @@ const runAllTests = () => (
       assert(error == null);
     } catch (e) {
       if (!error || error.code === 'ERR_ASSERTION') {
+        console.log('Extracted:', JSON.stringify(extracted));
+        console.log('Initial:', JSON.stringify(initial));
+        console.log('Slice:', slice);
         throw e;
       }
     }
