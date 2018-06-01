@@ -49,15 +49,22 @@ class Slice {
   };
 
   get = (array) => {
+    let extracted;
     // We can use the built in `Array.slice()` method for this special case.
     if (array.slice && (this.step == null || this.step === 1)) {
       const start = this.start == null ? undefined : this.start;
       const stop = this.stop == null ? undefined : this.stop;
-      return array.slice(start, stop);
+      extracted = array.slice(start, stop);
+    } else {
+      extracted = this.indices(array)
+        .map(index => array[index]);
     }
 
-    return this.indices(array)
-      .map(index => array[index]);
+    if (array instanceof String) {
+      return extracted.join('');
+    }
+
+    return extracted;
   };
 
   set = (array, values) => {
