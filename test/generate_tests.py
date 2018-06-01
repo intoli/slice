@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 from __future__ import print_function
+from copy import deepcopy
 import argparse
 import json
 import random
@@ -65,6 +66,20 @@ def main(args=None, namespace=None):
         except Exception as e:
             error = str(e)
 
+        insert = None
+        final = None
+        if type(extracted) is list:
+            insert_length = len(extracted)
+            if random.random() < error_fraction:
+                insert_length = random.randint(0, max_length * 2)
+            insert = list(range(max_length, max_length + insert_length))
+            random.shuffle(insert)
+            final = deepcopy(initial)
+            try:
+                exec('final[' + slice_string + '] = insert')
+            except Exception as e:
+                error = str(e)
+
         extracted_is_empty = type(extracted) is list and len(extracted) == 0
         if total > 0:
             # Prevent the errors from dominating.
@@ -82,8 +97,10 @@ def main(args=None, namespace=None):
         print(json.dumps({
             'error': error,
             'extracted': extracted,
+            'final': final,
             'index': total,
             'initial': initial,
+            'insert': insert,
             'slice': slice_string,
         }))
 
