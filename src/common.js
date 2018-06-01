@@ -29,7 +29,14 @@ export const constructTrap = action => (target, name, value) => {
       part.length ? part : undefined
     ));
     const slice = new Slice(start, stop, step);
-    return slice[action](target, value);
+    const result = slice[action](target, value);
+    if (!result && action !== 'get') {
+      return result;
+    }
+    // Handles `Array.from()` and `new String()` construction.
+    return target.constructor.from ?
+      target.constructor.from(result) :
+      new target.constructor(result);
   }
 
   // Fall back to the array's own properties.
