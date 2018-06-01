@@ -27,3 +27,30 @@
 
 
 A JavaScript implementation of Python's extended slice syntax.
+
+
+```javascript
+import { range, SliceArray } from 'slice';
+
+
+// Populate a list from 1 through 100.
+const outputs = range(1, 100 + 1);
+
+// Replace every 3rd element with 'Fizz'.
+outputs[[3 - 1,,3]] =
+  Array(Math.floor(100 / 3))
+    .fill('Fizz');
+
+// Replace every 5th element with 'Buzz'.
+outputs[[5 - 1,,5]] =
+  Array(Math.floor(100 / 5))
+    .fill('Buzz');
+
+// Replace every (3 * 5)th element with 'Fizz Buzz'.
+outputs[[3 * 5 - 1,,3 * 5]] =
+  Array(Math.floor(100 / (3 * 5)))
+  .fill('Fizz Buzz');
+
+// Tada!
+console.log(outputs);
+```
