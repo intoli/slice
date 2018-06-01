@@ -24,7 +24,7 @@ def parse_args(args=None, namespace=None):
         'The maximum length of the initial generated list.'
     ))
 
-    parser.add_argument('-n', '--number', default=100, help=(
+    parser.add_argument('-n', '--number', default=10000, help=(
         'The number of test cases to generate.'
     ))
 
