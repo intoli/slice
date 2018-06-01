@@ -75,16 +75,17 @@ def main(args=None, namespace=None):
             if extracted_is_empty and empty_total / total > empty_fraction:
                 continue
 
-        print(json.dumps({
-            'error': error,
-            'extracted': extracted,
-            'initial': initial,
-            'slice': slice_string,
-        }))
-
         empty_total += 1 if extracted_is_empty else 0
         error_total += 1 if error else 0
         total += 1
+
+        print(json.dumps({
+            'error': error,
+            'extracted': extracted,
+            'index': total,
+            'initial': initial,
+            'slice': slice_string,
+        }))
 
 
 if __name__ == '__main__':
