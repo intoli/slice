@@ -35,24 +35,31 @@ describe('SliceArray', () => {
     assert.deepEqual(sliced[[,,-1]], [3, 2]);
   });
 
+  it('should return a slice arrays when slicing', () => {
+    const sliceArray = SliceArray(0, 1, 2, 3)
+    const reversedArray = sliceArray[[,,-1]];
+    assert(reversedArray instanceof SliceArray);
+    assert.deepStrictEqual(reversedArray[[,,-1]], sliceArray);
+  });
+
   it('should reverse an array', () => {
     const input = new SliceArray(1, 2, 3, 4);
     const expectedOutput = [4, 3, 2, 1];
     const output = input[[,,-1]];
-    assert.deepStrictEqual(output, expectedOutput);
+    assert.deepEqual(output, expectedOutput);
   });
 
   it('should extract the even elements from an array', () => {
     const input = new SliceArray(0, 1, 2, 3, 4);
     const expectedOutput = [0, 2, 4];
     const output = input[[,,2]];
-    assert.deepStrictEqual(output, expectedOutput);
+    assert.deepEqual(output, expectedOutput);
   });
 
   it('should extract the odd elements from an array', () => {
     const input = new SliceArray(0, 1, 2, 3, 4);
     const expectedOutput = [1, 3];
     const output = input[[1,,2]];
-    assert.deepStrictEqual(output, expectedOutput);
+    assert.deepEqual(output, expectedOutput);
   });
 });
