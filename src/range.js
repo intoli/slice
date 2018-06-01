@@ -2,7 +2,7 @@ const range = (start, stop, step = 1) => {
   if (stop == null) {
     return range(0, start);
   } else if (step === 1) {
-    return Array(stop - start)
+    return Array(Math.max(stop - start, 0))
       .fill()
       .map((_, index) => index + start);
   }
