@@ -14,6 +14,13 @@ describe('SliceString', () => {
     assert(sliceString == 'hello');
   });
 
+  it('should return a slice arrays when slicing', () => {
+    const original = SliceString('hello');
+    const reversed = original[[,,-1]];
+    assert(reversed instanceof SliceString);
+    assert.deepStrictEqual(reversed[[,,-1]], original);
+  });
+
   it('should reverse a string', () => {
     const input = new SliceString('hello');
     const expectedOutput = 'olleh';
