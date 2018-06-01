@@ -25,6 +25,16 @@ describe('SliceArray', () => {
     assert(sliceArray.length === 2);
   });
 
+  it('should return a slice arrays when using map()', () => {
+    const mapped = SliceArray(0, 1, 2, 3).map(i => 2 * i);
+    assert(mapped[-1] === 6);
+  });
+
+  it('should return a slice arrays when using slice()', () => {
+    const sliced = SliceArray(0, 1, 2, 3).slice(-2);
+    assert.deepEqual(sliced[[,,-1]], [3, 2]);
+  });
+
   it('should reverse an array', () => {
     const input = new SliceArray(1, 2, 3, 4);
     const expectedOutput = [4, 3, 2, 1];
