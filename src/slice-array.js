@@ -42,7 +42,7 @@ class SliceArray extends Array {
 function constructSliceArray(...args) {
   return new SliceArray(...args);
 }
-constructSliceArray.__proto__ = SliceArray.__proto__;
+Object.setPrototypeOf(constructSliceArray, Object.getPrototypeOf(SliceArray));
 constructSliceArray.prototype = SliceArray.prototype;
 
 
