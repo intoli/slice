@@ -25,28 +25,32 @@ const generateTests = (runTest) => (
 );
 
 
-describe('SliceArray Integration Tests', async () => {
-  await generateTests(({
+const runAllTests = () => (
+  generateTests(({
     error,
     extracted,
     index,
     initial,
     slice,
   }) => {
-    it(`should run test #${index}`, () => {
-      try {
-        const initialSliceArray = new SliceArray(...initial);
-        const extractedUsingString = initialSliceArray[slice];
-        console.log(typeof extractedUsingString, typeof extracted);
-        console.log(extractedUsingString, extracted);
-        assert.deepEqual(extractedUsingString, extracted);
-        // If we made it this far, there should have been no Python error.
-        assert(error == null);
-      } catch (e) {
-        if (!error || error.code === 'ERR_ASSERTION') {
-          throw e;
-        }
+    console.log(`Running test #${index}`);
+    try {
+      const initialSliceArray = new SliceArray(...initial);
+      const extractedUsingString = initialSliceArray[slice];
+      assert.deepEqual(extractedUsingString, extracted);
+      // If we made it this far, there should have been no Python error.
+      assert(error == null);
+    } catch (e) {
+      if (!error || error.code === 'ERR_ASSERTION') {
+        throw e;
       }
-    });
-  });
-});
+    }
+  })
+);
+
+
+export default runAllTests;
+
+if (!module.parent) {
+  runAllTests();
+}
