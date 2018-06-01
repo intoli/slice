@@ -18,20 +18,20 @@ describe('SliceString', () => {
     const input = new SliceString('hello');
     const expectedOutput = 'olleh';
     const output = input[[,,-1]];
-    assert.deepStrictEqual(output, expectedOutput);
+    assert(output == expectedOutput);
   });
 
   it('should extract the even characters from a string', () => {
     const input = new SliceString('hello');
     const expectedOutput = 'hlo';
     const output = input[[,,2]];
-    assert.deepStrictEqual(output, expectedOutput);
+    assert(output == expectedOutput);
   });
 
   it('should extract the odd elements from an array', () => {
     const input = new SliceString('hello');
     const expectedOutput = 'el';
     const output = input[[1,,2]];
-    assert.deepStrictEqual(output, expectedOutput);
+    assert(output == expectedOutput);
   });
 });
