@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import SliceArray from '../src/';
+import { SliceArray } from '../src/';
 
 
 describe('SliceArray', () => {
