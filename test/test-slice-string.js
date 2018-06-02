@@ -28,18 +28,18 @@ describe('SliceString', () => {
     assert(concatenated == 'hello world');
   });
 
-  it('should return a slice string when using toUpperCase()', () => {
-    const original = SliceString('hello');
-    const upperCase = original.toUpperCase();
-    assert(upperCase instanceof SliceString);
-    assert(upperCase == 'HELLO');
-  });
-
   it('should return a slice string when using substr()', () => {
     const original = SliceString('hello');
     const extracted = original.substr(2, 2);
     assert(extracted instanceof SliceString);
     assert(extracted == 'll');
+  });
+
+  it('should return a slice string when using toUpperCase()', () => {
+    const original = SliceString('hello');
+    const upperCase = original.toUpperCase();
+    assert(upperCase instanceof SliceString);
+    assert(upperCase == 'HELLO');
   });
 
   it('should reverse a string', () => {

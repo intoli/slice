@@ -32,9 +32,29 @@ export const constructTrap = action => (target, name, value) => {
       new target.constructor(result);
   }
 
-  // Fall back to the array's own properties.
+  // Fall back to the array's own properties...
   const result = Reflect[action](target, name, value);
-  return typeof result === 'function' ? result.bind(target) : result;
+
+  // ...but we need to doe some special handling to bind and wrap functions.
+  if (action === 'get' && typeof result === 'function') {
+    const boundMethod = result.bind(target);
+    // `Array` respects `Symbol.species`, but `String` doesn't. That means we need
+    // to actually override any of its methods which return strings.
+    if (target instanceof String && !['toString', 'valueOf'].includes(name)) {
+      // We'll do this recursively to handle `String.match()` and the like.
+      const convertStrings = (obj) => {
+        if (typeof obj === 'string') {
+          return new target.constructor(obj);
+        }
+        Object.entries(obj)
+          .forEach(([key, value]) => { obj[key] = convertStrings(value); });
+        return obj;
+      };
+      return (...args) => convertStrings(boundMethod(...args));
+    }
+    return boundMethod;
+  }
+  return result;
 };
 
 export const sliceProxyHandler = {
