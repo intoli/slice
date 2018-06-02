@@ -12,6 +12,32 @@ class Slice {
     this.step = step == null ? step : parseInt(step, 10);
   }
 
+  static from = (string) => {
+    const cleanedString = (string || '').toString()
+      // Remove all whitespace.
+      .replace(/\s/g, '')
+      // Replace colons with commas.
+      .replace(/:/g, ',');
+
+    // Handle actual `Slice` objects.
+    const sliceMatch = cleanedString.match(/^slice\((null|-?\d+),(null|-?\d+),(null|-?\d+)\)$/i);
+    if (sliceMatch) {
+      const [start, stop, step] = sliceMatch.slice(1)
+        .map(value => parseInt(value, 10))
+        .map(value => (Number.isNaN(value) ? null : value));
+      return new Slice(start, stop, step);
+    }
+
+    // Handle the double bracket syntax and the standard Python syntax.
+    if (/^(-?\d+)?(,(-?\d+)?(,(-?\d+)?)?)$/.test(cleanedString)) {
+      const [start, stop, step] = cleanedString.split(',')
+        .map(part => (part.length ? part : null));
+      return new Slice(start, stop, step);
+    }
+
+    return null;
+  };
+
   indices = (array) => {
     // Handle negative indices while preserving `null` values.
     const start = this.start < 0 ? this.start + array.length : this.start;
@@ -96,7 +122,7 @@ class Slice {
 
   toString = () => {
     // Force `undefined`/`null` to both show up as `null`.
-    const normalize = value => value == null ? null : value;
+    const normalize = value => (value == null ? null : value);
     return `Slice(${normalize(this.start)}, ${normalize(this.stop)}, ${normalize(this.step)})`;
   };
 }

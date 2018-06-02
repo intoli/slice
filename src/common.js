@@ -12,23 +12,16 @@ export const allowConstructionWithoutNew = (Class) => {
 };
 
 export const constructTrap = action => (target, name, value) => {
-  const key = (name || '').toString()
-    // Remove all whitespace.
-    .replace(/\s/g, '')
-    // Replace commas with colons.
-    .replace(/,/g, ':');
-
   // Handle negative indices.
-  if (/^-\d+$/.test(key)) {
-    return Reflect[action](target, target.length + parseInt(key, 10), value);
+  if (typeof name !== 'symbol' && /^\s*-\d+\s*$/.test(name)) {
+    const negativeIndex = parseInt(name, 10);
+    const index = negativeIndex === 0 ? negativeIndex : target.length + negativeIndex;
+    return Reflect[action](target, index, value);
   }
 
   // Handle slices.
-  if (/^(-?\d+)?(:(-?\d+)?(:(-?\d+)?)?)$/.test(key)) {
-    const [start, stop, step] = key.split(':').map(part => (
-      part.length ? part : undefined
-    ));
-    const slice = new Slice(start, stop, step);
+  const slice = Slice.from(name);
+  if (slice) {
     const result = slice[action](target, value);
     if (!result && action !== 'get') {
       return result;
