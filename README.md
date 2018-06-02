@@ -1,16 +1,5 @@
-<h1 vertical-align="middle">Slice
-    <a target="_blank" href="https://twitter.com/home?status=Slice%20%E2%80%94%20A%20Javascript%20implementation%20of%20Python's%20awesome%20negative%20indexing%20and%20extended%20slice%20syntax%20%40IntoliNow%20%23Intoli%0A%0Ahttps%3A//github.com/intoli/slice">
-        <img height="26px" src="https://simplesharebuttons.com/images/somacro/twitter.png"
-            alt="Tweet"></a>
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/intoli/slice">
-        <img height="26px" src="https://simplesharebuttons.com/images/somacro/facebook.png"
-            alt="Share on Facebook"></a>
-    <a target="_blank" href="http://reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fintoli%2Fslice&title=Slice%20%E2%80%94%20A%20Javascript%20implementation%20of%20Python's%20awesome%20negative%20indexing%20and%20extended%20slice%20syntax">
-        <img height="26px" src="https://simplesharebuttons.com/images/somacro/reddit.png"
-            alt="Share on Reddit"></a>
-    <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https://github.com/intoli/slice&t=Slice%20%E2%80%94%20Python's%20negative%20indexing%20and%20extended%20slice%20syntax%20for%20JavaScript">
-        <img height="26px" src="media/ycombinator.png"
-            alt="Share on Hacker News"></a>
+<h1 vertical-align="middle">
+    <img height="100px" src="media/logo.svg" alt="Slice">
 </h1>
 
 <p align="left">
@@ -23,10 +12,23 @@
     <a href="https://www.npmjs.com/package/slice">
         <img src="https://img.shields.io/npm/v/slice.svg"
             alt="NPM Version"></a>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a target="_blank" href="https://twitter.com/home?status=Slice%20%E2%80%94%20A%20Javascript%20implementation%20of%20Python's%20awesome%20negative%20indexing%20and%20extended%20slice%20syntax%20%40IntoliNow%20%23Intoli%0A%0Ahttps%3A//github.com/intoli/slice">
+        <img height="26px" src="https://simplesharebuttons.com/images/somacro/twitter.png"
+            alt="Tweet"></a>
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/intoli/slice">
+        <img height="26px" src="https://simplesharebuttons.com/images/somacro/facebook.png"
+            alt="Share on Facebook"></a>
+    <a target="_blank" href="http://reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fintoli%2Fslice&title=Slice%20%E2%80%94%20A%20Javascript%20implementation%20of%20Python's%20awesome%20negative%20indexing%20and%20extended%20slice%20syntax">
+        <img height="26px" src="https://simplesharebuttons.com/images/somacro/reddit.png"
+            alt="Share on Reddit"></a>
+    <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https://github.com/intoli/slice&t=Slice%20%E2%80%94%20Python's%20negative%20indexing%20and%20extended%20slice%20syntax%20for%20JavaScript">
+        <img height="26px" src="media/ycombinator.png"
+            alt="Share on Hacker News"></a>
 </p>
 
 
-###### [For Python Programmers](#for-people-who-know-python-already) | [Installation](#installation) | [API](#api) | [Contributing](#contributing) | [License](#license)
+###### [For Python Programmers](#for-people-who-know-python-already) | [Installation](#installation) | [API](#api) | [Contributing](#contributing)
 
 > Slice is a JavaScript implementation of Python's awesome negative indexing and [extended slice](https://docs.python.org/2.3/whatsnew/section-slices.html) syntax for arrays and strings.
 > It uses ES6 proxies to allow for an intuitive double-bracket indexing syntax which closely replicates how slices are constructed in Python.
