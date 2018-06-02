@@ -25,6 +25,15 @@ describe('SliceArray', () => {
     assert(sliceArray.length === 2);
   });
 
+  it('should handle slice deletion', () => {
+    const sliceArray = SliceArray(0, 1, 2, 3);
+    delete sliceArray[[,,2]];
+    const array = Array(0, 1, 2, 3);
+    delete array[0];
+    delete array[2];
+    assert.deepEqual(sliceArray, array);
+  });
+
   it('should return a slice array when using map()', () => {
     const mapped = SliceArray(0, 1, 2, 3).map(i => 2 * i);
     assert(mapped[-1] === 6);
