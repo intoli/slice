@@ -25,17 +25,17 @@ describe('SliceArray', () => {
     assert(sliceArray.length === 2);
   });
 
-  it('should return a slice arrays when using map()', () => {
+  it('should return a slice array when using map()', () => {
     const mapped = SliceArray(0, 1, 2, 3).map(i => 2 * i);
     assert(mapped[-1] === 6);
   });
 
-  it('should return a slice arrays when using slice()', () => {
+  it('should return a slice array when using slice()', () => {
     const sliced = SliceArray(0, 1, 2, 3).slice(-2);
     assert.deepEqual(sliced[[,,-1]], [3, 2]);
   });
 
-  it('should return a slice arrays when slicing', () => {
+  it('should return a slice array when slicing', () => {
     const sliceArray = SliceArray(0, 1, 2, 3)
     const reversedArray = sliceArray[[,,-1]];
     assert(reversedArray instanceof SliceArray);

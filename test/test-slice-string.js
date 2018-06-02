@@ -14,7 +14,7 @@ describe('SliceString', () => {
     assert(sliceString == 'hello');
   });
 
-  it('should return a slice arrays when slicing', () => {
+  it('should return a slice string when slicing', () => {
     const original = SliceString('hello');
     const reversed = original[[,,-1]];
     assert(reversed instanceof SliceString);
