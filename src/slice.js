@@ -96,4 +96,10 @@ class Slice {
 }
 
 
-export default Slice;
+const slice = (...args) => new Slice(...args);
+
+
+export {
+  slice as default,
+  Slice,
+};

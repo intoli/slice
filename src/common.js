@@ -1,4 +1,4 @@
-import Slice from './slice';
+import { Slice } from './slice';
 
 
 export const allowConstructionWithoutNew = (Class) => {
