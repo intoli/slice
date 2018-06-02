@@ -25,6 +25,14 @@ describe('SliceArray', () => {
     assert(sliceArray.length === 2);
   });
 
+  it('should handle negative index deletion', () => {
+    const sliceArray = SliceArray(0, 1, 2, 3);
+    delete sliceArray[-1];
+    const array = Array(0, 1, 2, 3);
+    delete array[3];
+    assert.deepEqual(sliceArray, array);
+  });
+
   it('should handle slice deletion', () => {
     const sliceArray = SliceArray(0, 1, 2, 3);
     delete sliceArray[[,,2]];
