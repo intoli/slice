@@ -25,6 +25,24 @@ describe('SliceArray', () => {
     assert(sliceArray.length === 2);
   });
 
+  it('should handle negative index use of the in keyword', () => {
+    const sliceArray = SliceArray(0, 1, 2, 3);
+    delete sliceArray[[,,2]];
+    assert(-1 in sliceArray);
+    assert(!(-2 in sliceArray));
+    assert(-3 in sliceArray);
+    assert(1 in sliceArray);
+  });
+
+  it('should handle slice use of the in keyword', () => {
+    const sliceArray = SliceArray(0, 1, 2, 3);
+    delete sliceArray[[,,2]];
+    assert([1,,2] in sliceArray);
+    assert(!([,,2] in sliceArray));
+    assert(!([,2] in sliceArray));
+    assert([1,2] in sliceArray);
+  });
+
   it('should handle negative index deletion', () => {
     const sliceArray = SliceArray(0, 1, 2, 3);
     delete sliceArray[-1];
