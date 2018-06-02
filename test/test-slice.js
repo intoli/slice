@@ -23,4 +23,11 @@ describe('Slice', () => {
     assert(testSlice.start == null);
     assert(testSlice.stop === 1);
   });
+
+  it('should convert to a string properly as an object key', () => {
+    const testSlice = new Slice(1, 2, 3);
+    const dictionary = {};
+    dictionary[testSlice] = true;
+    assert(dictionary['Slice(1, 2, 3)'])
+  });
 });
