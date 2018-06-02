@@ -26,8 +26,103 @@
 </p>
 
 
-A JavaScript implementation of Python's extended slice syntax.
+###### [Installation](#installation) | [Contributing](#contributing) | [License](#license)
 
+> Slice is a JavaScript implementation of Python's awesome negative indexing and [extended slice](https://docs.python.org/2.3/whatsnew/section-slices.html) syntax for arrays and strings.
+> It uses ES6 proxies to allow for an intuitive double-bracket indexing syntax which closely replicates Python's own syntax.
+> Oh, and it comes with an implementation of Python's [range](https://docs.python.org/3/library/stdtypes.html#typesseq-range) method too!
+
+
+If you know Python, then you're probably well aware of how pleasant Python's indexing and slice syntax make working with lists and strings.
+If not—well, you're in for a treat!
+Slice adds `SliceArray` and `SliceString` classes which extend the corresponding builtin types to provide a unified and concise syntax for indexing and slicing in JavaScript.
+
+For starters, negative indices can be used to count backwards from the end of an array or string.
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+// Outputs: 4
+array[-1]
+
+const string = SliceString('Hello World!');
+// Outputs: 'd'
+string[-2]
+```
+
+That's a convenient alternative to needing to write things like `array[array.length - n]`, but it's really just the beginning of what Slice has to offer.
+Slice also introduces a double bracket indexing syntax which allows you to specify subranges of iterables by writing `array[[start,stop]]`.
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+// Outputs: [2, 3]
+array[[1,-1]]
+```
+
+This is functionally identical to the builtin [Array.slice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) method, but it also works for strings *and* it supports assignment using the same interface.
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+array[[1,-1]] = ['two', 'three', 'three and a half'];
+// Outputs: [1, 'two', 'three', 'three and half', 4]
+array
+```
+
+It's also possible to leave off either the `start` or `stop` parameter to have the range automatically extend to the beginning or end of the iterable.
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+// Outputs: [2, 3, 4]
+array[[1,]]
+// Outputs: [1, 2, 3]
+array[[,-1]]
+
+const string = SliceString('Hello World!');
+// Outputs: 'World!'
+string[[6,]]
+```
+
+You can also add a third `step` parameter to your slices using the `array[[start,stop,step]]` syntax.
+That's when things get really interesting.
+It allows you to easily extract every Nth element from an iterable while optionally specifying a subrange at the same time.
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+
+// Outputs: [1, 3]
+array[[,,2]]
+
+// Outputs: [2, 4]
+array[[1,,2]]
+```
+
+And, of course, extended slices also support assignment!
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+
+array[[,,2]] = ['odd', 'odd'];
+// Outputs: ['odd', 2, 'odd', 4]
+array
+
+[array[[,,2]], array[[1,,2]]] = [array[[1,,2]], array[[,,2]]];
+// Outputs: [2, 'odd', 4, 'odd']
+array
+```
+
+You can even use negative values for the `step` parameter to iterate backwards through an array or string.
+
+```javascript
+const array = SliceArray(1, 2, 3, 4);
+
+// Outputs: [4, 3, 2, 1]
+array[[,,-1]]
+
+// Outputs: [4, 2]
+array[[,,-2]]
+```
+
+Let's put this together into one last example that's a little more fun.
+We'll use Slice's extended slice syntax and it's `range()` function to solve [Fizz Buzz](http://wiki.c2.com/?FizzBuzzTest) without any explicit loops or recursion.
 
 ```javascript
 import { range, SliceArray } from 'slice';
@@ -49,10 +144,23 @@ outputs[[5 - 1,,5]] =
 // Replace every (3 * 5)th element with 'Fizz Buzz'.
 outputs[[3 * 5 - 1,,3 * 5]] =
   Array(Math.floor(100 / (3 * 5)))
-  .fill('Fizz Buzz');
+    .fill('Fizz Buzz');
 
 // Tada!
 console.log(outputs);
+```
+
+
+## Installation
+
+The Slice package is available on npm with the package name [slice](https://npmjs.com/package/slice).
+You can install it using your favorite JavaScript package manager in the usual way.
+
+```bash
+# With npm: npm install slice
+# With pnpm: pnpm install slice
+# With yarn:
+yarn add slice
 ```
 
 
