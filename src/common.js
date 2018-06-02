@@ -58,6 +58,7 @@ export const constructTrap = action => (target, name, value) => {
 };
 
 export const sliceProxyHandler = {
+  deleteProperty: constructTrap('deleteProperty'),
   get: constructTrap('get'),
   set: constructTrap('set'),
 };

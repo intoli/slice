@@ -74,6 +74,15 @@ class Slice {
     return indices;
   };
 
+  //
+  // Methods which correspond directly to proxy trap handlers.
+  //
+
+  deleteProperty = (array) => (
+    this.indices(array)
+      .every(index => delete array[index])
+  );
+
   get = (array) => {
     let extracted;
     // We can use the built in `Array.slice()` method for this special case.
