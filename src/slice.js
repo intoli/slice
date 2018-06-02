@@ -102,6 +102,11 @@ class Slice {
     return extracted;
   };
 
+  has = (array) => (
+    this.indices(array)
+      .every(index => index in array)
+  );
+
   set = (array, values) => {
     // We can insert arrays of any length for unextended slices.
     if (array.splice && (this.step == null || this.step === 1)) {
