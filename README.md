@@ -249,6 +249,62 @@ yarn add slice
 ```
 
 
+## API
+
+Each of these methods and classes exist as named exports in the `slice` package.
+They can be imported using either [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+
+```javascript
+import { range, slice, SliceArray, SliceString } from 'slice';
+```
+
+or [require()](https://nodejs.org/api/modules.html#modules_require).
+
+```javascript
+const { range, slice, SliceArray, SliceString } = require('slice');
+```
+
+
+### range(stop), range(start, stop, [step])
+
+Constructs a `SliceArray` object consisting of a sequence of integers.
+The method signature and behavior are very similar to those of Python's `range()` method, and [their documentation about the method](https://docs.python.org/3/library/stdtypes.html#typesseq-range) largely applies here.
+The value of `range(start, stop, step)[i]` will be equal to `start + (step * i)` and the `stop` parameter determines the stopping condition depending on the sign of `step`.
+- `start` <number> The value of the first element in the range, or `0` if not specified.
+- `stop` <number> The number that, once reached, will terminate the range.
+    This value will *not* be included in the range.
+- `step` <number> The difference between adjacent numbers in the range, or `1` if not specified.
+    Negative values for `step` mean that the values in the range are sequentially decreasing.
+- returns: <`SliceArray`>
+
+
+### slice(stop), slice(start, stop, [step])
+
+Constructs a `Slice` object which can be passed as an index to either a `SliceArray` or `SliceString` instance to specify a series of elements.
+There's generally no need to manually construct `Slice` objects, and the double bracket `[[start,stop,step]]` indexing syntax should be preferred.
+The method signature and behavior are identical to those of Python's [slice()](https://docs.python.org/3/library/functions.html#slice) method.
+
+- `start` <number> The index of the first element, or the index of the first/last element for positive/negative values of `step` if not specified.
+- `stop` <number> The index that, once reached, will terminate the slice.
+    If not specified, then the slice will continue until an edge of the iterable has been reached.
+- `step` <number> The gap between adjacent indices in the slice, or `1` if not specified.
+    Negative values for `step` mean that the indices in the range are sequentially decreasing.
+- returns: <`Slice`>
+
+### SliceArray(arrayLength) / SliceArray(element0, element1[, ...[, elementN]])
+
+Constructs a `SliceArray` object which adds support for negative indexing and slicing to the built-in [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) object.
+The API for `SliceArray` is identical to that of `Array`, and it can be used as a drop-in replacement.
+Any methods that would normally return an `Array` will return a `SliceArray` instead.
+
+
+### String(thing)
+
+Constructs a `SliceString` object which adds support for negative indexing and slicing to the built-in [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) object.
+The API for `SliceString` is identical to that of `String`, and it can be used as a drop-in replacement.
+Any methods that would normally return an `String` will return a `SliceString` instead.
+
+
 ## Development
 
 To get started on development, you simply need to clone the repository and install the project dependencies.
