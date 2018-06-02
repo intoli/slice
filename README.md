@@ -1,14 +1,14 @@
 <h1 vertical-align="middle">Slice
-    <a targe="_blank" href="https://twitter.com/home?status=Slice%20%E2%80%94%20Python's%20extended%20slice%20syntax%20for%20JavaScript%20%40IntoliNow%20%23Intoli%0A%0Ahttps%3A//github.com/intoli/slice">
+    <a target="_blank" href="https://twitter.com/home?status=Slice%20%E2%80%94%20A%20Javascript%20implementation%20of%20Python's%20awesome%20negative%20indexing%20and%20extended%20slice%20syntax%20%40IntoliNow%20%23Intoli%0A%0Ahttps%3A//github.com/intoli/slice">
         <img height="26px" src="https://simplesharebuttons.com/images/somacro/twitter.png"
             alt="Tweet"></a>
     <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/intoli/slice">
         <img height="26px" src="https://simplesharebuttons.com/images/somacro/facebook.png"
             alt="Share on Facebook"></a>
-    <a target="_blank" href="http://reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fintoli%2Fslice&title=Slice%20%E2%80%94%20Python%27s%20extended%20slice%20syntax%20for%20JavaScript">
+    <a target="_blank" href="http://reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fintoli%2Fslice&title=Slice%20%E2%80%94%20A%20Javascript%20implementation%20of%20Python's%20awesome%20negative%20indexing%20and%20extended%20slice%20syntax">
         <img height="26px" src="https://simplesharebuttons.com/images/somacro/reddit.png"
             alt="Share on Reddit"></a>
-    <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https://github.com/intoli/slice&t=Slice%20%E2%80%94%20Python%27s%20extended%20slice%20syntax%20for%20JavaScript">
+    <a target="_blank" href="https://news.ycombinator.com/submitlink?u=https://github.com/intoli/slice&t=Slice%20%E2%80%94%20Python's%20negative%20indexing%20and%20extended%20slice%20syntax%20for%20JavaScript">
         <img height="26px" src="media/ycombinator.png"
             alt="Share on Hacker News"></a>
 </h1>
