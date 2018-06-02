@@ -109,7 +109,7 @@ class Slice {
       const stop = this.stop < 0 ? this.stop + array.length : this.stop;
       const deleteCount = this.stop == null ? array.length : stop - start;
       array.splice(start, deleteCount, ...values);
-      return array;
+      return true;
     }
 
     // Otherwise, the lengths must match and we need to do them one-by-one.
@@ -126,7 +126,7 @@ class Slice {
         // eslint-disable-next-line no-param-reassign
         array[arrayIndex] = values[valuesIndex];
       });
-    return array;
+    return true;
   };
 
   toString = () => {
