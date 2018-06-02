@@ -26,14 +26,14 @@
 </p>
 
 
-###### [Installation](#installation) | [Contributing](#contributing) | [License](#license)
+###### [Python Programmers](#for-people-who-know-python-already) | [Installation](#installation) | [API](#api) | [Contributing](#contributing) | [License](#license)
 
 > Slice is a JavaScript implementation of Python's awesome negative indexing and [extended slice](https://docs.python.org/2.3/whatsnew/section-slices.html) syntax for arrays and strings.
 > It uses ES6 proxies to allow for an intuitive double-bracket indexing syntax which closely replicates how slices are constructed in Python.
 > Oh, and it comes with an implementation of Python's [range](https://docs.python.org/3/library/stdtypes.html#typesseq-range) method too!
 
 
-If you know Python, then you're probably well aware of how pleasant Python's indexing and slice syntax make working with lists and strings.
+If you know Python, then you're probably well aware of how pleasant Python's indexing and slice syntax make working with lists and strings (*and you can skip ahead to [For People Who Know Python Already](#for-people-who-know-python-already) if you want*).
 If not—well, you're in for a treat!
 Slice adds `SliceArray` and `SliceString` classes which extend the corresponding builtin types to provide a unified and concise syntax for indexing and slicing in JavaScript.
 
@@ -149,6 +149,91 @@ outputs[[3 * 5 - 1,,3 * 5]] =
 // Tada!
 console.log(outputs);
 ```
+
+
+## For People Who Know Python Already
+
+If you know Python already, then you'll be right at home with Slice.
+The methods and syntax that it introduces are designed to *very* closely mirror those from Python.
+Python includes two built-in functions that Slice provides analogues of: [range()](https://docs.python.org/3/library/functions.html#func-range) and [slice()](https://docs.python.org/3/library/functions.html#slice).
+The method signatures of these methods are identical to those used in Python, and the behavior and usage of them is very similar.
+
+One major difference is that `range()` produces an iterator in Python while it produces a fully populated `SliceArray` in JavaScript, similar to how `range()` worked in Python 2.
+This choice was made because Python has built-in support for its slice syntax, but JavaScript requires subclassing [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) and [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) in order to add support for a similar syntax.
+The `range()` method returns a `SliceArray` so that the return value immediately supports slicing for convenience.
+
+For example, you could run the following without needing to explicitly construct a `SliceArray`.
+
+```javascript
+import { range, slice } from 'slice';
+
+// Outputs: [10, 11, 12, 13, 14]
+range(100)[slice(10, 15)]
+```
+
+Aside from the imports, the actual usage of `range()` and `slice()` here is also valid Python and would produce the same result.
+Even if you use Python quite a bit, however, there's a good chance that you might not that familiar with the explicit usage of `slice()` like this.
+That's because it's way more common to use Python's slice syntax rather than manually instantiating the `slice` class.
+
+```python
+# These are both equivalent in Python.
+range(100)[slice(10, 15)]
+range(100)[10:15]
+```
+
+It's not possible to replicate that exact syntax in JavaScript, but Slice uses a very similar syntax that should be immediately familiar to you if you know Python.
+All you need to do is to use double brackets for the indexing and to replace the colons with commas.
+The slicing will work exactly as you would expect in Python after that.
+It supports negative indexing, empty parameters, extended slices, negative steps, assignment to slices, and the whole shebang.
+In fact, part of the test suite actually [runs a Python script](test/generate_tests.py) to perform thousands of slicing operations to verify that the JavaScript results are identical!
+
+Here are a few examples of how the syntax compares between Python and Slice in JavaScript.
+
+| Input             | Python Code      | JavaScript Code    | Output            |
+|-------------------|------------------|--------------------|-------------------|
+| `[0, 1, 2, 3, 4]` | `array[-2]`      | `array[[-2]]`      | `3`               |
+| `[0, 1, 2, 3, 4]` | `array[:2]`      | `array[[,2]]`      | `[0, 1]`          |
+| `[0, 1, 2, 3, 4]` | `array[1::2]`    | `array[[1,,2]]`    | `[1, 3]`          |
+| `[0, 1, 2, 3, 4]` | `array[::-1]`    | `array[[,,-1]]`    | `[4, 3, 2, 1, 0]` |
+| `'hello world'`   | `string[::-1]`   | `string[[,,-1]]`   | `'dlrow olleh'`   |
+| `'hello world'`   | `string[1:-1]`   | `string[[1,-1]]`   | `'ello worl'`     |
+| `'hello world'`   | `string[1:-1:2]` | `string[[1,-1,2]]` | `'el o l'`        |
+| `'hello world'`   | `string[:-5]`    | `string[[,-5]]`    | `'world'`         |
+
+Once you get used to how the Python syntax maps to the double bracket syntax, it becomes quite easy to switch seamlessly between the two.
+
+We've looked already at how `range()` can be used to constuct slice-able arrays; the one other thing you need to know is how to construct `SliceArray` and `SliceString` instances manually.
+These classes have identical interfaces into JavaScript's built-in [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) and [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) objects.
+They can be constructed in exactly the same ways and are essentially drop-in replacements for `Array` and `String`.
+
+```javascript
+import { range, SliceArray, SliceString } from 'slice';
+
+// All of the following are equivalent.
+range(5);
+SliceArray(0, 1, 2, 3, 4);
+new SliceArray(0, 1, 2, 3, 4);
+SliceArray.from([0, 1, 2, 3, 4]);
+
+// The following are also equivalent.
+SliceString('hello world');
+new SliceString('hello world');
+```
+
+They also support all of the same methods once constructed, but will return slice-able arrays and strings whenever possible.
+For example, you can do things like this without needing to worry about converting the method outputs to slice-able objects.
+
+```javascript
+const helloWorld = SliceString('hello world');
+// Outputs: 'DLROW OLLEH'
+helloWorld.toUpperCase()[[,,-1]];
+
+// Outputs: [1, 4, 6]
+range(5).map(i => i * 2)[[1,-1]];
+```
+
+That's basically all there is to it!
+If you're ready for a little more Python in your JavaScript, then hop on over to the [installation section](#installation) to get started.
 
 
 ## Installation
