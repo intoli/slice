@@ -29,7 +29,7 @@
 ###### [Installation](#installation) | [Contributing](#contributing) | [License](#license)
 
 > Slice is a JavaScript implementation of Python's awesome negative indexing and [extended slice](https://docs.python.org/2.3/whatsnew/section-slices.html) syntax for arrays and strings.
-> It uses ES6 proxies to allow for an intuitive double-bracket indexing syntax which closely replicates Python's own syntax.
+> It uses ES6 proxies to allow for an intuitive double-bracket indexing syntax which closely replicates how slices are constructed in Python.
 > Oh, and it comes with an implementation of Python's [range](https://docs.python.org/3/library/stdtypes.html#typesseq-range) method too!
 
 
@@ -83,7 +83,7 @@ string[[6,]]
 
 You can also add a third `step` parameter to your slices using the `array[[start,stop,step]]` syntax.
 That's when things get really interesting.
-It allows you to easily extract every Nth element from an iterable while optionally specifying a subrange at the same time.
+The `step` parameter allows you to easily extract every Nth element from an iterable while optionally specifying a subrange at the same time.
 
 ```javascript
 const array = SliceArray(1, 2, 3, 4);
