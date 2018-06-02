@@ -92,7 +92,13 @@ class Slice {
         array[arrayIndex] = values[valuesIndex];
       });
     return array;
-  }
+  };
+
+  toString = () => {
+    // Force `undefined`/`null` to both show up as `null`.
+    const normalize = value => value == null ? null : value;
+    return `Slice(${normalize(this.start)}, ${normalize(this.stop)}, ${normalize(this.step)})`;
+  };
 }
 
 
