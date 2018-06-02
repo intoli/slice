@@ -26,7 +26,7 @@
 </p>
 
 
-###### [Python Programmers](#for-people-who-know-python-already) | [Installation](#installation) | [API](#api) | [Contributing](#contributing) | [License](#license)
+###### [For Python Programmers](#for-people-who-know-python-already) | [Installation](#installation) | [API](#api) | [Contributing](#contributing) | [License](#license)
 
 > Slice is a JavaScript implementation of Python's awesome negative indexing and [extended slice](https://docs.python.org/2.3/whatsnew/section-slices.html) syntax for arrays and strings.
 > It uses ES6 proxies to allow for an intuitive double-bracket indexing syntax which closely replicates how slices are constructed in Python.
@@ -149,6 +149,10 @@ outputs[[3 * 5 - 1,,3 * 5]] =
 // Tada!
 console.log(outputs);
 ```
+
+If you're ready to give it a try, then head over to the [installation section](#installation) or take a look at the [API documentation](#api).
+You also might find the [For People Who Know Python Already](#for-people-who-know-python-already) section interesting, even if you've never used Python before.
+It provides some context for why this library exists and works the way that it does.
 
 
 ## For People Who Know Python Already
