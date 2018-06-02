@@ -48,6 +48,7 @@ module.exports = {
             reserved: [
               'Slice',
               'SliceArray',
+              'SliceString',
             ],
           },
         },
