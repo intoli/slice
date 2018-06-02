@@ -46,9 +46,11 @@ export const constructTrap = action => (target, name, value) => {
         if (typeof parent === 'string') {
           return new target.constructor(parent);
         }
-        Object.entries(parent)
-          // eslint-disable-next-line no-param-reassign
-          .forEach(([key, child]) => { parent[key] = convertStrings(child); });
+        if (typeof parent === 'object') {
+          Object.entries(parent)
+            // eslint-disable-next-line no-param-reassign
+            .forEach(([key, child]) => { parent[key] = convertStrings(child); });
+        }
         return parent;
       };
       return (...args) => convertStrings(boundMethod(...args));
