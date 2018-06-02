@@ -78,8 +78,9 @@ class Slice {
   // Methods which correspond directly to proxy trap handlers.
   //
 
-  deleteProperty = (array) => (
+  deleteProperty = array => (
     this.indices(array)
+      // eslint-disable-next-line no-param-reassign
       .every(index => delete array[index])
   );
 
@@ -102,7 +103,7 @@ class Slice {
     return extracted;
   };
 
-  has = (array) => (
+  has = array => (
     this.indices(array)
       .every(index => index in array)
   );

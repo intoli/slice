@@ -42,13 +42,14 @@ export const constructTrap = action => (target, name, value) => {
     // to actually override any of its methods which return strings.
     if (target instanceof String && !['toString', 'valueOf'].includes(name)) {
       // We'll do this recursively to handle `String.match()` and the like.
-      const convertStrings = (obj) => {
-        if (typeof obj === 'string') {
-          return new target.constructor(obj);
+      const convertStrings = (parent) => {
+        if (typeof parent === 'string') {
+          return new target.constructor(parent);
         }
-        Object.entries(obj)
-          .forEach(([key, value]) => { obj[key] = convertStrings(value); });
-        return obj;
+        Object.entries(parent)
+          // eslint-disable-next-line no-param-reassign
+          .forEach(([key, child]) => { parent[key] = convertStrings(child); });
+        return parent;
       };
       return (...args) => convertStrings(boundMethod(...args));
     }
