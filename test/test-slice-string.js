@@ -28,6 +28,15 @@ describe('SliceString', () => {
     assert(concatenated == 'hello world');
   });
 
+  it('should return an array of slice strings when using match()', () => {
+    const original = SliceString('hello 3423');
+    const match = original.match(/(hello )(\d+)/);
+    assert(match.length === 3);
+    match.forEach((group) => {
+      assert(group instanceof SliceString);
+    });
+  });
+
   it('should return a slice string when using substr()', () => {
     const original = SliceString('hello');
     const extracted = original.substr(2, 2);
