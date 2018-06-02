@@ -30,4 +30,12 @@ describe('Slice', () => {
     dictionary[testSlice] = true;
     assert(dictionary['Slice(1, 2, 3)'])
   });
+
+  it('should recreate a stringified Slice with Slice.from()', () => {
+    const beforeSlice = new Slice(1, null, 3);
+    const afterSlice = Slice.from(beforeSlice.toString());
+    assert(beforeSlice.start === afterSlice.start);
+    assert(beforeSlice.stop === afterSlice.stop);
+    assert(beforeSlice.step === afterSlice.step);
+  });
 });
