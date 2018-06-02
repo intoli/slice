@@ -21,6 +21,27 @@ describe('SliceString', () => {
     assert.deepStrictEqual(reversed[[,,-1]], original);
   });
 
+  it('should return a slice string when using concat()', () => {
+    const original = SliceString('hello');
+    const concatenated = original.concat(' ', 'world');
+    assert(concatenated instanceof SliceString);
+    assert(concatenated == 'hello world');
+  });
+
+  it('should return a slice string when using toUpperCase()', () => {
+    const original = SliceString('hello');
+    const upperCase = original.toUpperCase();
+    assert(upperCase instanceof SliceString);
+    assert(upperCase == 'HELLO');
+  });
+
+  it('should return a slice string when using substr()', () => {
+    const original = SliceString('hello');
+    const extracted = original.substr(2, 2);
+    assert(extracted instanceof SliceString);
+    assert(extracted == 'll');
+  });
+
   it('should reverse a string', () => {
     const input = new SliceString('hello');
     const expectedOutput = 'olleh';
