@@ -337,12 +337,7 @@ The auto-generated tests can be run with the `yarn test:generated` command.
 
 ## Contributing
 
-Contributions are welcome, but please follow these contributor guidelines:
-
-- Create an issue on [the issue tracker](https://github.com/intoli/slice/issues/new) to discuss potential changes before submitting a pull request.
-- Include at least one test to cover any new functionality or bug fixes.
-- Make sure that all of your tests are passing and that there are no merge conflicts.
-- You agree to assign the copyright for any contributions to Intoli, LLC.
+Contributions are welcome, but please follow these contributor guidelines outlined in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
 ## License
