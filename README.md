@@ -304,7 +304,7 @@ The API for `SliceArray` is identical to that of `Array`, and it can be used as 
 Any methods that would normally return an `Array` will return a `SliceArray` instead.
 
 
-### String(thing)
+### SliceString(thing)
 
 Constructs a `SliceString` object which adds support for negative indexing and slicing to the built-in [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) object.
 The API for `SliceString` is identical to that of `String`, and it can be used as a drop-in replacement.
