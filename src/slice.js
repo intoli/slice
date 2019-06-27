@@ -90,7 +90,8 @@ class Slice {
     if (array.slice && (this.step == null || this.step === 1)) {
       const start = this.start == null ? undefined : this.start;
       const stop = this.stop == null ? undefined : this.stop;
-      extracted = array.slice(start, stop).split('');
+      extracted = array.slice(start, stop);
+      extracted = !Array.isArray(extracted) ? extracted.split('') : extracted;
     } else {
       extracted = this.indices(array)
         .map(index => array[index]);
