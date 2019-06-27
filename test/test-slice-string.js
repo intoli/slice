@@ -65,10 +65,17 @@ describe('SliceString', () => {
     assert(output == expectedOutput);
   });
 
-  it('should extract the odd elements from an array', () => {
+  it('should extract the odd elements from a string', () => {
     const input = new SliceString('hello');
     const expectedOutput = 'el';
     const output = input[[1,,2]];
+    assert(output == expectedOutput);
+  });
+
+  it('should extract the range from a string', () => {
+    const input = new SliceString('hello');
+    const expectedOutput = 'ell';
+    const output = input[[1,4]];
     assert(output == expectedOutput);
   });
 });

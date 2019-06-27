@@ -91,6 +91,7 @@ class Slice {
       const start = this.start == null ? undefined : this.start;
       const stop = this.stop == null ? undefined : this.stop;
       extracted = array.slice(start, stop);
+      extracted = !Array.isArray(extracted) ? extracted.split('') : extracted;
     } else {
       extracted = this.indices(array)
         .map(index => array[index]);
